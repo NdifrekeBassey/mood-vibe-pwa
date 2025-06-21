@@ -34,7 +34,8 @@ A fun, animated **Progressive Web App** (PWA) that gives you a random "mood vibe
 
 | Light Mode ☀️ | Dark Mode 🌙 |
 |---------------|--------------|
-| ![2](https://github.com/user-attachments/assets/a56411b7-4190-405a-897c-96c060f70bd9)
+| ![App Screenshot](assets/preview/1.png)
+
 |![1 (1)](https://github.com/user-attachments/assets/0eb8a4b1-5261-4c32-8fd2-74b869bbf423)
 
 
