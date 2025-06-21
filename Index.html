@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#000000" />
+  <title>Mood Vibe 🎧</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <h1>Mood Vibe 🎧</h1>
+
+  <select id="moodFilter" onchange="generateMood()">
+    <option value="all">🎯 All Moods</option>
+    <option value="chill">🧘 Chill</option>
+    <option value="hype">⚡ Hype</option>
+    <option value="romantic">💖 Romantic</option>
+  </select>
+
+  <div class="button-group">
+    <button onclick="generateMood()">✨ Get Mood Vibe</button>
+    <button onclick="toggleTheme()" id="themeToggle">🌞 Switch Theme</button>
+    <button onclick="togglePlayer()" id="playerToggle">🎵 Use Spotify</button>
+    <button onclick="shareVibe()">📤 Share This Vibe</button>
+  </div>
+
+  <div class="container" id="vibeContainer">
+    <h2 id="moodName"></h2>
+    <p id="quote"></p>
+    <div id="colors" class="colors"></div>
+    <iframe
+      id="musicPlayer"
+      width="100%"
+      height="80"
+      frameborder="0"
+      allow="autoplay; encrypted-media"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
