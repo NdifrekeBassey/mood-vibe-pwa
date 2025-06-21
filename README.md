@@ -93,8 +93,9 @@ Each time you tap "Get Mood Vibe":
 ---
 
 ## 📄 License
-
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)  
 MIT License — free to use, modify, and share.
+
 
 ---
 
