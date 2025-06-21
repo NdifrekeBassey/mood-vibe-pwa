@@ -30,17 +30,6 @@ A fun, animated **Progressive Web App** (PWA) that gives you a random "mood vibe
 
 ---
 
-## 📸 Demo Preview
-
-| Light Mode ☀️ | Dark Mode 🌙 |
-|---------------|--------------|
-| ![App Screenshot](assets/preview/1.png)
-
-|![1 (1)](https://github.com/user-attachments/assets/0eb8a4b1-5261-4c32-8fd2-74b869bbf423)
-
-
----
-
 ## 🛠️ Tech Stack
 
 - HTML5  
