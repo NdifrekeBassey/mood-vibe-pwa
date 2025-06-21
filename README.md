@@ -69,7 +69,7 @@ Each time you tap "Get Mood Vibe":
 
 ## 📲 How to Install
 
-1. Open the web app in your browser
+1. Open the web app at https://moodvibez.netlify.app/ in your browser
 2. Tap **"Add to Home Screen"** (on mobile) or **"Install"** (on desktop)
 3. Enjoy inspiration anytime ✨
 
