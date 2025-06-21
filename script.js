@@ -1,146 +1,69 @@
-const vibes = [
+const moods = [
   {
     name: "Chill Sunset",
-    category: "chill",
-    colors: ["#ff9a9e", "#fad0c4", "#fbc2eb"],
-    quote: "Relax and let the moment flow.",
-    song: {
-      youtube: "https://www.youtube.com/embed/5qap5aO4i9A",
-      spotify: "https://open.spotify.com/embed/track/3AhXZa8sUQht0UEdBJgpGc"
+    mood: "chill",
+    colors: ["#F9D29D", "#FFD1FF", "#A1C4FD"],
+    quote: "Relax and recharge.",
+    youtube: "dQw4w9WgXcQ",
+    spotify: {
+      preview_url: "https://p.scdn.co/mp3-preview/e21a65920e0ff1c857f82a13cd876f13fdc2f7aa",
+      external_url: "https://open.spotify.com/track/6JV2JOEocMgcZxYSZelKcc"
     }
   },
   {
     name: "Energetic Neon",
-    category: "hype",
-    colors: ["#fc466b", "#3f5efb", "#0fd850"],
-    quote: "You're a burst of unstoppable energy!",
-    song: {
-      youtube: "https://www.youtube.com/embed/K4DyBUG242c",
-      spotify: "https://open.spotify.com/embed/track/0e7ipj03S05BNilyu5bRzt"
-    }
-  },
-  {
-    name: "Golden Love",
-    category: "romantic",
-    colors: ["#ffd700", "#ffaf00", "#fff8dc"],
-    quote: "Your warmth lights up the world.",
-    song: {
-      youtube: "https://www.youtube.com/embed/xZzEzDkeHzI",
-      spotify: "https://open.spotify.com/embed/track/4iV5W9uYEdYUVa79Axb7Rh"
+    mood: "hype",
+    colors: ["#FF416C", "#FF4B2B", "#FFC837"],
+    quote: "You were born to stand out. Own it!",
+    youtube: "3tmd-ClpJxA",
+    spotify: {
+      preview_url: "https://p.scdn.co/mp3-preview/e21a65920e0ff1c857f82a13cd876f13fdc2f7aa",
+      external_url: "https://open.spotify.com/track/6JV2JOEocMgcZxYSZelKcc"
     }
   }
 ];
 
-let useSpotify = false;
+let currentProvider = "youtube";
+
+document.getElementById("generateBtn").addEventListener("click", generateMood);
+document.getElementById("toggleProviderBtn").addEventListener("click", toggleProvider);
+document.getElementById("toggleDarkModeBtn").addEventListener("click", toggleDarkMode);
 
 function generateMood() {
-  const selectedCategory = document.getElementById("moodFilter").value;
-  const filteredVibes = selectedCategory === "all"
-    ? vibes
-    : vibes.filter(v => v.category === selectedCategory);
+  const vibe = moods[Math.floor(Math.random() * moods.length)];
 
-  const vibe = filteredVibes[Math.floor(Math.random() * filteredVibes.length)];
+  document.getElementById("moodName").textContent = vibe.name;
+  document.getElementById("quote").textContent = vibe.quote;
 
-  document.getElementById('moodName').innerText = vibe.name;
-  document.getElementById('quote').innerText = vibe.quote;
+  document.getElementById("mood-box").style.background = `linear-gradient(135deg, ${vibe.colors.join(", ")})`;
 
-  // Show color boxes
-  const colorsDiv = document.getElementById('colors');
-  colorsDiv.innerHTML = '';
-  vibe.colors.forEach(color => {
-    const box = document.createElement('div');
-    box.className = 'color-box';
-    box.style.background = color;
-    colorsDiv.appendChild(box);
-  });
+  if (currentProvider === "youtube") {
+    document.getElementById("ytPlayer").src = `https://www.youtube.com/embed/${vibe.youtube}`;
+    document.getElementById("ytPlayer").style.display = "block";
+    document.getElementById("spPreview").style.display = "none";
+    document.getElementById("spLink").style.display = "none";
+  } else if (currentProvider === "spotify") {
+    if (vibe.spotify && vibe.spotify.preview_url) {
+      const preview = document.getElementById("spPreview");
+      const link = document.getElementById("spLink");
 
-  // Apply gradient background
-  document.body.style.background = `linear-gradient(135deg, ${vibe.colors.join(',')})`;
+      preview.src = vibe.spotify.preview_url;
+      preview.style.display = "block";
 
-  // Set music
-  const player = document.getElementById('musicPlayer');
-  player.src = useSpotify ? vibe.song.spotify : vibe.song.youtube;
+      link.href = vibe.spotify.external_url;
+      link.style.display = "inline-block";
 
-  // Save current vibe for share
-  currentVibe = vibe;
-}
-
-function toggleTheme() {
-  const body = document.body;
-  const isDark = body.classList.toggle('dark-mode');
-  localStorage.setItem('theme', isDark ? 'dark' : 'light');
-  document.getElementById("themeToggle").innerText = isDark ? "🌙 Dark Mode On" : "🌞 Light Mode On";
-}
-
-function togglePlayer() {
-  useSpotify = !useSpotify;
-  document.getElementById("playerToggle").innerText = useSpotify ? "📺 Use YouTube" : "🎵 Use Spotify";
-  generateMood();
-}
-
-// Share current vibe
-let currentVibe = null;
-function shareVibe() {
-  if (!currentVibe) return alert("Please generate a vibe first!");
-  if (navigator.share) {
-    navigator.share({
-      title: `Mood Vibe: ${currentVibe.name}`,
-      text: `${currentVibe.quote}`,
-      url: window.location.href
-    }).catch(err => console.error("Share failed:", err));
-  } else {
-    alert("Sharing not supported on this device.");
+      document.getElementById("ytPlayer").style.display = "none";
+    }
   }
 }
 
-// Load theme
-window.addEventListener('DOMContentLoaded', () => {
-  const savedTheme = localStorage.getItem('theme');
-  if (savedTheme === 'dark') {
-    document.body.classList.add('dark-mode');
-    document.getElementById("themeToggle").innerText = "🌙 Dark Mode On";
-  } else {
-    document.getElementById("themeToggle").innerText = "🌞 Light Mode On";
-  }
-});
-
-function shareVibe() {
-  if (!currentVibe) return alert("Get a mood first!");
-
-  const text = `🎧 Mood: ${currentVibe.name}\n💬 "${currentVibe.quote}"\nTry it now on Mood Vibe!`;
-  const url = window.location.href;
-  const fullMessage = `${text}\n${url}`;
-
-  // Try Web Share API
-  if (navigator.share) {
-    navigator
-      .share({
-        title: "My Mood Vibe",
-        text: text,
-        url: url
-      })
-      .then(() => console.log("Shared successfully"))
-      .catch(err => {
-        console.warn("Share failed, trying fallback:", err);
-        fallbackToTwitter(fullMessage);
-      });
-  } else {
-    fallbackToTwitter(fullMessage);
-  }
+function toggleProvider() {
+  currentProvider = currentProvider === "youtube" ? "spotify" : "youtube";
+  document.getElementById("toggleProviderBtn").textContent =
+    currentProvider === "spotify" ? "🎬 Use YouTube" : "🎵 Use Spotify";
 }
 
-// Fallback to Twitter or clipboard
-function fallbackToTwitter(message) {
-  try {
-    const tweet = `https://twitter.com/intent/tweet?text=${encodeURIComponent(message)}`;
-    const popup = window.open(tweet, "_blank");
-    if (!popup) throw new Error("Popup blocked");
-  } catch {
-    // Final fallback: copy to clipboard
-    navigator.clipboard.writeText(message).then(() => {
-      alert("📋 Message copied to clipboard. You can now paste it anywhere!");
-    }).catch(() => {
-      alert("⚠️ Sharing is not supported on this device.");
-    });
-  }
+function toggleDarkMode() {
+  document.body.classList.toggle("dark");
 }

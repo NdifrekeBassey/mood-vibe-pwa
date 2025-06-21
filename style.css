@@ -1,74 +1,54 @@
-:root {
-  --bg-color: #f4f4f4;
-  --text-color: #000;
-  --container-bg: #fff;
-  --button-bg: #007bff;
-  --button-text: #fff;
-}
-
 body {
   font-family: sans-serif;
-  background: var(--bg-color);
-  color: var(--text-color);
-  text-align: center;
-  padding: 20px;
+  transition: background 0.5s, color 0.5s;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  background: #f0f0f0;
+  color: #333;
 }
 
-button {
-  background: var(--button-bg);
-  color: var(--button-text);
-  border: none;
-  border-radius: 8px;
-  padding: 10px 15px;
-  margin: 8px 4px;
-  cursor: pointer;
+body.dark {
+  background: #111;
+  color: #eee;
 }
 
 .container {
-  background: var(--container-bg);
-  border-radius: 16px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  padding: 20px;
-  margin-top: 20px;
-}
-
-#colors {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin: 10px 0;
-}
-
-.color-box {
-  width: 40px;
-  height: 40px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-}
-
-/* Dark mode */
-.dark-mode {
-  --bg-color: #121212;
-  --text-color: #f0f0f0;
-  --container-bg: #1e1e1e;
-  --button-bg: #03dac6;
-  --button-text: #000;
-}
-
-body {
-  font-family: sans-serif;
-  background: var(--bg-color);
-  color: var(--text-color);
   text-align: center;
-  padding: 20px;
-  transition: background 1s ease;
+  max-width: 600px;
+  margin: 2rem;
 }
 
-select {
-  padding: 8px;
-  border-radius: 6px;
-  margin-bottom: 10px;
-  font-size: 16px;
+#mood-box {
+  margin: 1rem auto;
+  padding: 1rem;
+  border-radius: 1rem;
+  background: #ddd;
+  transition: background 0.5s;
 }
 
-/* Gradient override will happen via JS */
+.buttons button {
+  margin: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  background: linear-gradient(to right, #00c6ff, #0072ff);
+  color: white;
+  transition: transform 0.2s ease;
+}
+
+.buttons button:hover {
+  transform: scale(1.05);
+}
+
+#mediaDisplay {
+  margin-top: 1rem;
+}
+
+audio, iframe {
+  width: 100%;
+  border-radius: 12px;
+}
