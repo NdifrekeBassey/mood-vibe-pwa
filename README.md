@@ -6,7 +6,6 @@
 
 A fun, animated **Progressive Web App** (PWA) that gives you a random "mood vibe" — like _Chill Sunset_ or _Energetic Neon_ — complete with:
 - 🎨 A matching color palette
-- 💬 A motivational quote
 - 🎧 A vibe-matching music link (YouTube/Spotify)
 - 🌙 Dark mode toggle
 - 📱 Share button (Web Share API + Twitter fallback)
